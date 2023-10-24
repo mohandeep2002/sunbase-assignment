@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace Sunbase.Controllers
 {
@@ -19,6 +20,7 @@ namespace Sunbase.Controllers
         public float animationDuration = 1f;
         public float fadeDuration = 1f;
         public bool isPanelVisible = false;
+        public GameObject popUpPanelFordata;
 
         #region Main Data Display
         public void ShowData(SunbaseClass tempData)
@@ -66,13 +68,15 @@ namespace Sunbase.Controllers
         #region DropDown Operations
         public void TogglePopUp()
         {
+            Debug.Log("toggle pop up");
+            popUpPanelFordata.SetActive(false);            
             if (isPanelVisible)
             {
-                panelToPopUp.DOMoveY(panelToPopUp.position.y - 500f, animationDuration);
+                panelToPopUp.DOMoveY(panelToPopUp.position.y - 500f, 0.2f);
             }  
             else
             {
-                panelToPopUp.DOMoveY(panelToPopUp.position.y + 500f, animationDuration);
+                panelToPopUp.DOMoveY(panelToPopUp.position.y + 500f, 0.2f);
             }
             isPanelVisible = !isPanelVisible;
         }
@@ -80,6 +84,12 @@ namespace Sunbase.Controllers
         public void AllClientsButtonClicked()
         {
             TogglePopUp();
+            StartCoroutine(WaitForAllClientButtons(0.3f));
+        }
+
+        IEnumerator WaitForAllClientButtons(float speed)
+        {
+            yield return new WaitForSeconds(0.3f);
             foreach (var obj in generatedUI)
             {
                 if (!obj.activeInHierarchy) ToggleFade(obj);
@@ -89,6 +99,7 @@ namespace Sunbase.Controllers
         public void ManagersAndNonOnlyClicked(bool value)
         {
             TogglePopUp();
+            // StartCoroutine(WaitForAllClientButtons(0f));
             if (value)
             {
                 foreach (var obj in generatedUI)
