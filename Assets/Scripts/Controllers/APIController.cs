@@ -9,7 +9,8 @@ namespace Sunbase.Controllers
 {
     public class APIController : MonoBehaviour
     {
-        public string apiURL = "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=client_data";
+        public DisplayController displayController;
+        private string apiURL = "https://qa2.sunbasedata.com/sunbase/portal/api/assignment.jsp?cmd=client_data";
         private void Start()
         {
             StartCoroutine(GetDataFromAPI());
@@ -23,13 +24,14 @@ namespace Sunbase.Controllers
                 if (webRequest.isHttpError || webRequest.isNetworkError)
                 {
                     Debug.Log(webRequest.error);
+                    displayController.ErrorData(webRequest.error);
                 }
                 else
                 {
                     string jsonString = webRequest.downloadHandler.text;
                     // Deserialize the JSON data into the ClientData class
                     SunbaseClass clientData = JsonConvert.DeserializeObject<SunbaseClass>(jsonString);
-                    Debug.Log(clientData.data.Count);
+                    // Debug.Log(clientData.data.Count);
                     // Check if the deserialization was successful
                     if (clientData != null)
                     {
@@ -51,10 +53,12 @@ namespace Sunbase.Controllers
                                 Debug.Log("Points: " + clientDat.points);
                             }
                         }
+                        displayController.ShowData(clientData);
                     }
                     else
                     {
                         Debug.LogError("Failed to deserialize JSON.");
+                        displayController.ErrorData("Failed to deserialize JSON.");
                     }
                 }
             }
