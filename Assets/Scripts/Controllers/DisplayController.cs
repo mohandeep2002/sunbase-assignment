@@ -16,7 +16,7 @@ namespace Sunbase.Controllers
         public Transform errorPopup;
         [Header("Dropdown Variables")]
         public Transform panelToPopUp;
-        public float animationDuration = 0.5f;
+        public float animationDuration = 1f;
         public float fadeDuration = 1f;
         public bool isPanelVisible = false;
 
@@ -63,7 +63,7 @@ namespace Sunbase.Controllers
             TogglePopUp();
         }
 
-        #region DropDown Display
+        #region DropDown Operations
         public void TogglePopUp()
         {
             if (isPanelVisible)
@@ -76,7 +76,69 @@ namespace Sunbase.Controllers
             }
             isPanelVisible = !isPanelVisible;
         }
+
+        public void AllClientsButtonClicked()
+        {
+            TogglePopUp();
+            foreach (var obj in generatedUI)
+            {
+                if (!obj.activeInHierarchy) ToggleFade(obj);
+            }
+        }
+
+        public void ManagersAndNonOnlyClicked(bool value)
+        {
+            TogglePopUp();
+            if (value)
+            {
+                foreach (var obj in generatedUI)
+                {
+                    if (!obj.GetComponent<SunbaseViewClass>().isManager && obj.activeInHierarchy)
+                    {
+                        ToggleFade(obj);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var obj in generatedUI)
+                {
+                    if (obj.GetComponent<SunbaseViewClass>().isManager && obj.activeInHierarchy)
+                    {
+                        ToggleFade(obj);
+                    }
+                }
+            }
+            
+        }
         #endregion
+
+        public void ToggleFade(GameObject obj)
+        {
+            SunbaseViewClass viewClassScript = obj.GetComponent<SunbaseViewClass>();
+            Image image = viewClassScript.gameObject.GetComponent<Image>();
+            if (!viewClassScript.isFading)
+            {
+                viewClassScript.isFading = true;
+                if (viewClassScript.gameObject.activeSelf)
+                {
+                    image.DOFade(0f, 0.3f).OnComplete(() =>
+                    {
+                        viewClassScript.gameObject.SetActive(false);
+                        viewClassScript.isFading = false;
+                    });
+                }
+                else
+                {
+                    viewClassScript.gameObject.SetActive(true);
+                    image.DOFade(1f, 0.3f).OnComplete(() =>
+                    {
+                        viewClassScript.isFading = false;
+                    });
+                }
+            }
+        }
+
     }
 }
 
