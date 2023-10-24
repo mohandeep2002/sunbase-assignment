@@ -1,10 +1,10 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Sunbase.Class
 {
-    [Serializable]
+    [System.Serializable]
     public class Client
     {
         public bool isManager;
@@ -12,7 +12,7 @@ namespace Sunbase.Class
         public string label;
     }
 
-    [Serializable]
+    [System.Serializable]
     public class Data
     {
         public string address;
@@ -20,7 +20,7 @@ namespace Sunbase.Class
         public int points;
     }
 
-    [Serializable]
+    [System.Serializable]
     public class SunbaseClass
     {
         public List<Client> clients;
@@ -28,4 +28,3 @@ namespace Sunbase.Class
         public string label;
     }
 }
-
