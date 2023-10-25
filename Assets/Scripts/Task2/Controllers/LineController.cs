@@ -13,16 +13,18 @@ namespace Sunbase.Task2.Controllers
         public bool startDraw = false;
         public bool oneLineDrawed = false;
         public UIController uiController;
+        public GameController gameController;
         public List<Vector2> fingerPoisitions;
 
         private void Update()
         {
+            if (!startDraw) return;
             if (Input.GetMouseButtonUp(0) && oneLineDrawed)
             {
                 Debug.Log("Button donw");
                 startDraw = false;
+                gameController.DeleteTouchings();
             }
-            if (!startDraw) return;
             if (Input.GetMouseButtonDown(0))
             {
                 oneLineDrawed = true;
