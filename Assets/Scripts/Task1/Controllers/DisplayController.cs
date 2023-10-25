@@ -1,12 +1,12 @@
 using UnityEngine;
-using Sunbase.Class;
+using Sunbase.Task1.Class;
 using System.Collections.Generic;
 using TMPro;
 using DG.Tweening;
 using UnityEngine.UI;
 using System.Collections;
 
-namespace Sunbase.Controllers
+namespace Sunbase.Task1.Controllers
 {
     public class DisplayController : MonoBehaviour
     {

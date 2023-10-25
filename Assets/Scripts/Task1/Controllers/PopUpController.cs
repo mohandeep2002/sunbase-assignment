@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace Sunbase.Controllers
+namespace Sunbase.Task1.Controllers
 {
     public class PopUpController : MonoBehaviour
     {

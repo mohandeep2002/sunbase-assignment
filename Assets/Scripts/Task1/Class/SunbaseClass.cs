@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sunbase.Class
+namespace Sunbase.Task1.Class
 {
     [System.Serializable]
     public class Client

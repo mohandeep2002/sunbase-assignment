@@ -2,10 +2,9 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
-using Sunbase.Class;
+using Sunbase.Task1.Class;
 
-
-namespace Sunbase.Controllers
+namespace Sunbase.Task1.Controllers
 {
     public class APIController : MonoBehaviour
     {

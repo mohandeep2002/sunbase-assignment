@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using Sunbase.Controllers;
+using Sunbase.Task1.Controllers;
 
-namespace Sunbase.Class
+namespace Sunbase.Task1.Class
 {
     public class SunbaseViewClass : MonoBehaviour
     {

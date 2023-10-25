@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+namespace Sunbase.Common
 {
-    public void ChangeToTask(int sceneNumber)
+    public class SceneChanger : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
+        public void ChangeToTask(int sceneNumber)
+        {
+            SceneManager.LoadScene(sceneNumber, LoadSceneMode.Single);
+        }
     }
 }
