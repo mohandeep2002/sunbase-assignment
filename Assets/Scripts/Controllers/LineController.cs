@@ -11,9 +11,15 @@ namespace Sunbase.Controllers
         public LineRenderer lineRenderer;
         public EdgeCollider2D edgeCollider;
         public List<Vector2> fingerPoisitions;
+        public bool startDraw = false;
 
         private void Update()
         {
+            if (!startDraw) return;
+            if (Input.GetMouseButtonUp(0))
+            {
+                startDraw = false;
+            }
             if (Input.GetMouseButtonDown(0))
             {
                 CreateLine();
